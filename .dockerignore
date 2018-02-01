@@ -1,0 +1,9 @@
+.git
+.ipynb_checkpoints
+.DS_Store
+.gitignore
+Dockerfile
+README.md
+venv
+tmp
+build

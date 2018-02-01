@@ -1,0 +1,8 @@
+tbx
+flask >= 0.10
+arrow
+whitenoise
+gunicorn
+requests
+kubernetes
+

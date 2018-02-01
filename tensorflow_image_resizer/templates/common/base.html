@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>{{app_name}}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=0.9, user-scalable=no">
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+        <script src="/static/js/common.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload-image.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.iframe-transport.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/css/jquery.fileupload.min.css" rel="stylesheet" type="text/css" media="all">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/static/css/common.css" rel="stylesheet" type="text/css" media="all">
+        <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        {% if not ajax %}
+            <div id="header">
+                <a href="/">
+                    <span id="logo"></span>
+                    <span id="subtitle"><i class="fa fa-upload fa-fw"></i>&nbsp;&nbsp;{{app_name}}</span>
+                </a>
+                <span id="sponsored">
+                    Sponsored by <span id="kontron_logo"><img src="/static/img/kontron_logo.png" width="100px" title="Kontron"/></span>
+                </span>
+            </div>
+        {% endif %}
+        {% block body %}{% endblock %}
+    <script>
+    </script>
+    </body>
+</html>

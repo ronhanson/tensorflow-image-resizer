@@ -1,0 +1,17 @@
+{% extends "common/base.html" %}
+{% block head %}
+    <!--<link href="/static/css/index.css" rel="stylesheet" type="text/css" media="all">-->
+    <script src="/static/js/upload.js"></script>
+{% endblock %}
+{% block body %}
+
+<div id="container">
+    <div id="upload">
+        <div class="section">
+            <h2>File Upload</h2>
+            <i class="fa fa-fw fa-upload"></i>&nbsp;<input type="file" id="fileupload" name="file"/>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
