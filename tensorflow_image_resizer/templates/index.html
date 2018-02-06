@@ -2,6 +2,22 @@
 {% block head %}
     <!--<link href="/static/css/index.css" rel="stylesheet" type="text/css" media="all">-->
     <script src="/static/js/upload.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/vendor/jquery.ui.widget.min.js"></script>
+    <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+    <script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+    <!-- The Canvas to Blob plugin is included for image resizing functionality -->
+    <script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+    <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.iframe-transport.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload-process.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload-validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload-image.min.js"></script>
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/css/jquery.fileupload.min.css" rel="stylesheet" type="text/css" media="all">
+
 {% endblock %}
 {% block body %}
 
@@ -9,9 +25,24 @@
     <div id="upload">
         <div class="section">
             <h2>File Upload</h2>
-            <i class="fa fa-fw fa-upload"></i>&nbsp;<input type="file" id="fileupload" name="file"/>
+            <div id="image-upload">
+                <span class="upload-button">
+                    <i class="fa fa-fw fa-upload"></i>&nbsp;
+                    <span>Upload image</span>
+                    <!-- The file input field used as target for the file upload widget -->
+                    <input type="file" id="fileupload" name="file"/>
+                </span>
+
+                <!-- The global progress bar -->
+                <div id="progress" class="progress">
+                    <div class="progress-bar progress-bar-success"></div>
+                </div>
+                <!-- The container for the uploaded files -->
+                <div id="files" class="files"></div>
+            </div>
         </div>
     </div>
 </div>
+
 
 {% endblock %}
