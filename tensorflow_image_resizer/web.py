@@ -7,15 +7,16 @@ Tensor Flow Image Resizer
 :author: Ronan Delacroix
 """
 import os
+import sys
 from flask import Flask, render_template, request, redirect, flash, url_for
 from whitenoise import WhiteNoise
 from werkzeug.utils import secure_filename
 import tempfile
 import shutil
 import json
-import zipfile
 from PIL import Image
-
+from .tensorflow.client import TensorflowClient
+import time
 
 # Flask setup
 app = Flask('tensorflow-image-resizer',
@@ -37,10 +38,19 @@ SIZES = [
     (32, 32),
 ]
 
+FORMATS = [
+    ('JPEG', '.jpg'),
+    ('PNG', '.png')
+]
+
 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+# Setup Tensorflow client from ENV settings
+tf_client = TensorflowClient()
 
 
 # Routes
@@ -74,38 +84,66 @@ def upload():
             if file.filename == '':
                 flash('No selected file')
                 return redirect(request.url)
+
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
                 fullpath = os.path.join(upload_folder, filename)
                 file.save(fullpath)
 
+                t1 = time.time()
+                original_prediction = tf_client.predict_image(fullpath)
+                original_predict_duration = time.time() - t1
+
                 src_img = Image.open(fullpath, 'r')
 
-                derivatives = []
+                results = []
                 for size in SIZES:
                     new_filename = os.path.splitext(filename)[0]+'.' + '%d_%d' % size
                     new_fullpath = os.path.join(upload_folder, new_filename)
-                    png_fullpath = new_fullpath + '.png'
-                    jpg_fullpath = new_fullpath + '.jpg'
-                    resized_img = src_img.copy()
-                    resized_img.thumbnail(size, Image.ANTIALIAS)
-                    resized_img.save(png_fullpath, "PNG")
-                    resized_img.save(jpg_fullpath, "JPEG")
+                    for format in FORMATS:
 
-                    derivatives.append(png_fullpath)
-                    derivatives.append(jpg_fullpath)
+                        typed_fullpath = new_fullpath + format[1]
 
-                    # call tensor flow here on derivatives
+                        t1 = time.time()
+                        resized_img = src_img.copy()
+                        resized_img.thumbnail(size, Image.ANTIALIAS)
+                        resized_img.save(typed_fullpath, format[0])
+                        resize_duration = time.time() - t1
 
-                    #with zipfile.ZipFile('/tmp/images.zip', 'w') as z:
-                    #    for f in derivatives:
-                    #        z.write(f)
+                        #url = 'http://{tf_api_host}:{tf_api_port}/tf_api/gan_client/prediction'.format(
+                        #    tf_api_host=os.environ.get('TF_API_HOST', '0.0.0.0'),
+                        #    tf_api_port=os.environ.get('TF_API_PORT', 5000))
+                        #headers = {'Accept': 'application/json', 'Content-Type': 'multipart/form-data'}
+                        #r = requests.post(url, files={'image': open(jpg_fullpath,'rb')}, headers=headers)
+                        #result = r.json()
+                        #print(result)
+
+                        t2 = time.time()
+                        prediction = tf_client.predict_image(typed_fullpath)
+                        total_duration = time.time() - t1
+                        predict_duration = time.time() - t2
+
+                        results.append({
+                            'size': size,
+                            'format': format[0],
+                            'filename': os.path.split(typed_fullpath)[1],
+                            'filesize': os.path.getsize(typed_fullpath),
+                            'prediction': prediction,
+                            'processing_times': {
+                                'resize': resize_duration,
+                                'predict': predict_duration,
+                                'total': total_duration,
+                            }
+                        })
 
                 return json.dumps({'files': [
                     {
                         "name": filename,
                         "type": file.content_type,
-                        "size": os.path.getsize(fullpath)
+                        "size": os.path.getsize(fullpath),
+                        "prediction": original_prediction,
+                        "predict_duration": original_predict_duration,
+                        "predictions": results
                     }
                 ]})
     finally:

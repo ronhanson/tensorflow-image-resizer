@@ -1,10 +1,9 @@
-tbx
 flask >= 0.10
-arrow
 whitenoise
 gunicorn
-requests
 kubernetes
 werkzeug
 Pillow
+tensorflow==1.4.0
+grpcio==1.7.0
 

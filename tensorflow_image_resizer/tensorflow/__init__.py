@@ -4,5 +4,5 @@
 """
 (c) 2018 Ronan Delacroix
 Tensor Flow Image Resizer
-:author: Ronan Delacroix
+:Author: Ronan Delacroix
 """

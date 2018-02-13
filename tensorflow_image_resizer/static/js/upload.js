@@ -73,6 +73,7 @@ $(function () {
             progress + '%'
         );
     }).on('fileuploaddone', function (e, data) {
+        $('#results').html('<pre>'+JSON.stringify(data.result, null, '    ')+'</pre>');
         $.each(data.result.files, function (index, file) {
             if (file.url) {
                 var link = $('<a>')

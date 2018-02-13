@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     import tensorflow_image_resizer
 
-    tensorflow_image_resizer.app.jinja_env.auto_reload = True
-    tensorflow_image_resizer.app.config['TEMPLATES_AUTO_RELOAD'] = True
-    tensorflow_image_resizer.app.run(debug=True, port=5051)
+    tensorflow_image_resizer.web.app.jinja_env.auto_reload = True
+    tensorflow_image_resizer.web.app.config['TEMPLATES_AUTO_RELOAD'] = True
+    tensorflow_image_resizer.web.app.run(debug=True, port=5051)
 

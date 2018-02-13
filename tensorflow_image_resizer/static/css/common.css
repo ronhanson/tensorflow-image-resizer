@@ -157,3 +157,10 @@ td, th {
     -o-transition: width .6s ease;
     transition: width .6s ease;
 }
+
+pre {
+    text-align: left;
+    background: #333;
+    padding: 10px 20px;
+    color: #CCC;
+}
