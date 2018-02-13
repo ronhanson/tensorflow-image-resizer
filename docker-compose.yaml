@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  tf-serving-image-server:
+    container_name: tf-serving-image-server
+    image: samnco/tensorflow-serving:latest
+    command: tensorflow_model_server --port=9000 --model_name=inception --model_base_path=/bitnami/model-data
+    ports:
+      - 9000:9000
+    volumes:
+      - '/tmp/model-serving:/bitnami/tensorflow-serving'
+      - '/tmp/model-data:/bitnami/model-data'
+    networks:
+      - tf_serving_image
+
+  tf-image-resizer:
+    container_name: tf-image-resizer
+    image: ronhanson/tensorflow-image-resizer:latest
+    networks:
+      - tf_serving_image
+    ports:
+      - "5051:5051"
+    environment:
+      - TF_SERVER_NAME=tf-serving-image-server
+      - TF_SERVER_PORT=9000
+    depends_on:
+      - tf-serving-image-server
+
+networks:
+  tf_serving_image:
+    driver: bridge
