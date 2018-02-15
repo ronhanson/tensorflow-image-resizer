@@ -6,4 +6,6 @@ werkzeug
 Pillow
 tensorflow==1.4.0
 grpcio==1.7.0
+dpath
+numpy
 

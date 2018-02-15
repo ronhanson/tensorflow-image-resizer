@@ -17,6 +17,8 @@ import json
 from PIL import Image
 from .tensorflow.client import TensorflowClient
 import time
+import dpath
+import numpy
 
 # Flask setup
 app = Flask('tensorflow-image-resizer',
@@ -47,6 +49,13 @@ FORMATS = [
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+def prediction_compare(reference, prediction):
+    comparisons = []
+    for ref_klass, ref_score in reference.items():
+        comparisons.append(prediction.get(ref_klass, 0.0) / ref_score * 100.0)
+    return numpy.mean(comparisons)
 
 
 # Setup Tensorflow client from ENV settings
@@ -98,9 +107,11 @@ def upload():
 
                 results = []
                 for size in SIZES:
+                    print('TF Processing %dx%d ...' % size)
                     new_filename = os.path.splitext(filename)[0]+'.' + '%d_%d' % size
                     new_fullpath = os.path.join(upload_folder, new_filename)
                     for format in FORMATS:
+                        print('TF Processing %dx%d - %s.' % (size[0], size[1], format))
 
                         typed_fullpath = new_fullpath + format[1]
 
@@ -124,9 +135,10 @@ def upload():
                         predict_duration = time.time() - t2
 
                         results.append({
-                            'size': size,
-                            'format': format[0],
                             'filename': os.path.split(typed_fullpath)[1],
+                            "resized": "%dx%d" % size,
+                            'image_size': "%dx%d" % resized_img.size,
+                            'format': format[0],
                             'filesize': os.path.getsize(typed_fullpath),
                             'prediction': prediction,
                             'processing_times': {
@@ -136,16 +148,94 @@ def upload():
                             }
                         })
 
+                def ref_prediction_score(prediction):
+                    return prediction_compare(original_prediction, prediction)
+
+                statistics = {
+                    'all_timings': {
+                        "{resized} {format}".format(**t): t.get('processing_times', {})
+                        for t in results
+                    },
+                    'all_predictions': {
+                        "{resized} {format}".format(**t): ref_prediction_score(t.get('prediction', {}))
+                        for t in results
+                    },
+                    'timings_by_format': {
+                        f[0]: {
+                            t["resized"]: t.get('processing_times', {}).get('total')
+                            for t in results
+                            if t.get('format') == f[0]
+                        }
+                        for f in FORMATS
+                    },
+                    'predictions_by_format': {
+                        f[0]: {
+                            t["resized"]: ref_prediction_score(t.get('prediction', {}))
+                            for t in results
+                            if t.get('format') == f[0]
+                        }
+                        for f in FORMATS
+                    },
+                    'timings_by_size': {
+                        ("%dx%d" % s): {
+                            t["format"]: t.get('processing_times', {}).get('total')
+                            for t in results
+                            if t.get('resized') == ("%dx%d" % s)
+                        }
+                        for s in SIZES
+                    },
+                    'predictions_by_size': {
+                        ("%dx%d" % s): {
+                            t["format"]: ref_prediction_score(t.get('prediction', {}))
+                            for t in results
+                            if t.get('resized') == ("%dx%d" % s)
+                        }
+                        for s in SIZES
+                    },
+                    'average_timing_by_size': {
+                        ("%dx%d" % s): {
+                            "total": numpy.mean(dpath.util.values(list(filter(lambda x: x['resized'] == ("%dx%d" % s), results)), '*/processing_times/total')),
+                            "predict": numpy.mean(dpath.util.values(list(filter(lambda x: x['resized'] == ("%dx%d" % s), results)), '*/processing_times/predict')),
+                            "resize": numpy.mean(dpath.util.values(list(filter(lambda x: x['resized'] == ("%dx%d" % s), results)), '*/processing_times/resize'))
+                        }
+                        for s in SIZES
+                    },
+                    'average_prediction_by_size': {
+                        ("%dx%d" % s): numpy.mean([ref_prediction_score(t['prediction']) for t in results if t['resized'] == ("%dx%d" % s)])
+                        for s in SIZES
+                    },
+                    'average_timing_by_format': {
+                        f[0]: {
+                            "total": numpy.mean(dpath.util.values(list(filter(lambda x: x['format'] == f[0], results)), '*/processing_times/total')),
+                            "predict": numpy.mean(dpath.util.values(list(filter(lambda x: x['format'] == f[0], results)), '*/processing_times/predict')),
+                            "resize": numpy.mean(dpath.util.values(list(filter(lambda x: x['format'] == f[0], results)), '*/processing_times/resize'))
+                        }
+                        for f in FORMATS
+                    },
+                    'average_prediction_by_size': {
+                        f[0]: numpy.mean(list(filter(lambda x: x != 0.0, [ref_prediction_score(t['prediction']) for t in results if t['format'] == f[0]])))
+                        for f in FORMATS
+                    },
+                }
+
                 return json.dumps({'files': [
                     {
-                        "name": filename,
-                        "type": file.content_type,
-                        "size": os.path.getsize(fullpath),
+                        "filename": os.path.split(fullpath)[1],
+                        "content_type": file.content_type,
+                        "image_size": "%dx%d" % src_img.size,
+                        "format": src_img.format,
+                        "filesize": os.path.getsize(fullpath),
                         "prediction": original_prediction,
-                        "predict_duration": original_predict_duration,
-                        "predictions": results
+                        "processing_times": {
+                            'resize': 0.0,
+                            'predict': original_predict_duration,
+                            'total': original_predict_duration,
+                        },
+                        "derivatives": results,
+                        "statistics": statistics
                     }
                 ]})
+                print('TF Processing Done')
     finally:
         shutil.rmtree(upload_folder)
     return {}

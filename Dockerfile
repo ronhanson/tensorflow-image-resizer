@@ -9,7 +9,7 @@ WORKDIR /opt/app
 
 RUN pip3 install --upgrade pip
 
-RUN pip3 install --no-cache-dir "flask>=0.10" whitenoise gunicorn kubernetes werkzeug Pillow "tensorflow==1.4.0" "grpcio==1.7.0"
+RUN pip3 install --no-cache-dir "flask>=0.10" whitenoise gunicorn kubernetes werkzeug Pillow "tensorflow<=1.5.0" "grpcio<=1.8.0" dpath numpy
 
 ENV PYTHONPATH=$PYTHONPATH:/opt/app
 

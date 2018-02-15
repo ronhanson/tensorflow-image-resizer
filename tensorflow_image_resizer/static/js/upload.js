@@ -4,6 +4,47 @@
 
 $(function () {
     'use strict';
+
+    _.templateSettings = {
+        interpolate: /\[\[(.+?)\]\]/g
+    };
+
+    function getReadableFileSizeString(fileSizeInBytes) {
+        var i = -1;
+        var byteUnits = [' kB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
+        do {
+            fileSizeInBytes = fileSizeInBytes / 1024;
+            i++;
+        } while (fileSizeInBytes > 1024);
+
+        return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
+    }
+
+    function process_result(files) {
+        //$("#results").html('');
+        $.each(files, function (index, file) {
+            var file_tmpl = _.template($("#file_template").html());
+            var resized_file_tmpl = _.template($("#resized_file_template").html());
+
+            file.filesize = getReadableFileSizeString(file.filesize);
+            var derivatives_html = $('<div/>');
+            _.each(file.derivatives, function(resized_file) {
+                resized_file.original_timing = file.processing_times.total;
+                resized_file.processing_times.total_percent = resized_file.processing_times.total / resized_file.original_timing * 100.0;
+                resized_file.processing_times.predict_percent = resized_file.processing_times.predict / resized_file.processing_times.total * 100.0;
+                resized_file.processing_times.resize_percent = resized_file.processing_times.resize / resized_file.processing_times.total * 100.0;
+                resized_file.filesize = getReadableFileSizeString(resized_file.filesize)
+                derivatives_html.append(resized_file_tmpl(resized_file));
+            });
+            file.processed_derivatives = derivatives_html.html();
+            var processed_html = file_tmpl(file);
+            $("#results").append(processed_html);
+        });
+    }
+
+
+
+
     // Change this to the location of your server-side upload handler:
     var url = '/upload',
         uploadButton = $('<button/>')
@@ -27,7 +68,7 @@ $(function () {
     $('#fileupload').fileupload({
         url: url,
         dataType: 'json',
-        autoUpload: false,
+        autoUpload: true,
         acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp)$/i,
         maxFileSize: 99900000,
         disableImageResize: true,
@@ -35,7 +76,7 @@ $(function () {
         previewMaxHeight: 100,
         previewCrop: true
     }).on('fileuploadadd', function (e, data) {
-        $("#image-upload > span.upload-button").addClass('done')
+        $("#image-upload > span.upload-button").addClass('done');
         data.context = $('<div/>').appendTo('#files');
         $.each(data.files, function (index, file) {
             var node = $('<p/>')
@@ -74,7 +115,10 @@ $(function () {
         );
     }).on('fileuploaddone', function (e, data) {
         $('#results').html('<pre>'+JSON.stringify(data.result, null, '    ')+'</pre>');
-        $.each(data.result.files, function (index, file) {
+
+        process_result(data.result.files);
+
+        /*$.each(data.result.files, function (index, file) {
             if (file.url) {
                 var link = $('<a>')
                     .attr('target', '_blank')
@@ -87,7 +131,7 @@ $(function () {
                     .append('<br>')
                     .append(error);
             }
-        });
+        });*/
     }).on('fileuploadfail', function (e, data) {
         $.each(data.files, function (index) {
             var error = $('<span class="text-danger"/>').text('File upload failed.');
