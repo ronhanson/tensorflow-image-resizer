@@ -212,7 +212,7 @@ def upload():
                         }
                         for f in FORMATS
                     },
-                    'average_prediction_by_size': {
+                    'average_prediction_by_format': {
                         f[0]: numpy.mean(list(filter(lambda x: x != 0.0, [ref_prediction_score(t['prediction']) for t in results if t['format'] == f[0]])))
                         for f in FORMATS
                     },
