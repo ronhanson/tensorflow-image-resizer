@@ -99,11 +99,12 @@ def upload():
                 fullpath = os.path.join(upload_folder, filename)
                 file.save(fullpath)
 
+                src_img = Image.open(fullpath, 'r')
+                print('TF Processing source/reference image  %dx%d - %s.' % (src_img.size[0], src_img.size[1], src_img.format))
                 t1 = time.time()
                 original_prediction = tf_client.predict_image(fullpath)
                 original_predict_duration = time.time() - t1
 
-                src_img = Image.open(fullpath, 'r')
 
                 results = []
                 for size in SIZES:
@@ -111,7 +112,7 @@ def upload():
                     new_filename = os.path.splitext(filename)[0]+'.' + '%d_%d' % size
                     new_fullpath = os.path.join(upload_folder, new_filename)
                     for format in FORMATS:
-                        print('TF Processing %dx%d - %s.' % (size[0], size[1], format))
+                        print('TF Processing %dx%d - %s.' % (size[0], size[1], format[0]))
 
                         typed_fullpath = new_fullpath + format[1]
 

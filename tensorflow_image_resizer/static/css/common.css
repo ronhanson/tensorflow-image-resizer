@@ -184,6 +184,9 @@ pre {
 .processing_time {
     padding: 10px;
 }
+.processing_time > div {
+    position: relative;
+}
 
 .bar {
     width: 100%;
@@ -203,8 +206,8 @@ pre {
     box-sizing: border-box;
     position: relative;
     float: left;
-    padding: 1px 5px;
     color: white;
+    overflow: hidden;
 }
 
 .bar .part.predict {
@@ -213,6 +216,11 @@ pre {
 
 .bar .part.resize {
     background: pink;
+}
+.processing_time > div label {
+    position: absolute;
+    right: 0px;
+    top: 10px;
 }
 
 .derivative {
@@ -224,4 +232,11 @@ span.filename {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.graph {
+    width: 48%;
+    min-width: 400px;
+    display: inline-block;
+    height: 300px;
 }

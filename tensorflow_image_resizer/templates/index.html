@@ -15,6 +15,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload-process.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload-validate.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload-image.min.js"></script>
+        <script src="/static/js/lib/plotly-latest.min.js"></script>
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/css/jquery.fileupload.min.css" rel="stylesheet" type="text/css" media="all">
 
@@ -57,7 +58,7 @@
                         <div class="bar">
                             <div class="total" style="width:[[ processing_times.total_percent ]]%">
                                 <div class="part resize" style="width:[[ processing_times.resize_percent ]]%"></div>
-                                <div class="part predict" style="width:[[ processing_times.predict_percent ]]%">[[ processing_times.predict_percent ]]%</div>
+                                <div class="part predict" style="width:[[ processing_times.predict_percent ]]%">&nbsp;&nbsp;[[ processing_times.predict_percent.toFixed(1) ]]%</div>
                             </div>
                         </div>
                         <label>[[ processing_times.total.toFixed(1) ]]s</label>
@@ -83,7 +84,15 @@
                     <div class="progress-bar progress-bar-success"></div>
                 </div>
                 <!-- The container for the uploaded files -->
-                <div id="files" class="files"></div>
+                <div id="files" class="files">
+                </div>
+                <!-- The container for graphs -->
+                <div id="graphs" class="graphs">
+                    <div id="graph1" class="graph"></div>
+                    <div id="graph2" class="graph"></div>
+                    <div id="graph3" class="graph"></div>
+                    <div id="graph4" class="graph"></div>
+                </div>
                 <!-- The container for the processing results -->
                 <div id="results" class="results">
 
