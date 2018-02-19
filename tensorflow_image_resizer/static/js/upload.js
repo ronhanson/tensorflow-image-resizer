@@ -8,6 +8,8 @@ predict_data = {
       "filename": "daph.jpg",
       "content_type": "image\/jpeg",
       "filesize": 51353,
+      "server_names": ["default", "gpu"],
+      "sizes": ["2048x2048", "1024x1024", "512x512", "256x256", "128x128"],
       "derivatives": {
         "Orig. 453x604": {
           "filename": "daph.jpg",
@@ -918,8 +920,8 @@ $(function () {
             y: precisions,
             name: 'Prediction precision',
             marker: {
-                color: 'rgba(55,128,191,0.6)',
-                width: 12
+                color: 'rgba(55,128,191,1)',
+                size: 8
             },
             line: {
                 dash: 'solid',
@@ -936,8 +938,8 @@ $(function () {
             name: 'Prediction duration',
             /*type: 'bar',*/
             marker: {
-                color: 'rgba(255,153,51,0.6)',
-                width: 12
+                color: 'rgba(255,153,51, 1)',
+                size: 8
             },
             line: {
                 dash: 'solid',
@@ -965,13 +967,38 @@ $(function () {
             type: 'line'
         };
 
+
         var data = [trace1, trace2, trace3];
+
+        _.each(file_data.server_names, function(server_name) {
+            var server_timings = [];
+            _.each(file_data.derivatives, function(v, k) {
+                server_timings.push(v.predictions[server_name].predict_duration);
+            });
+            data.push({
+                x: keys,
+                y: server_timings,
+                name: server_name+' server predict duration',
+                marker: {
+                    //color: 'rgba(255,153,51,0.6)',
+                    size: 5
+                },
+                line: {
+                    dash: 'dashdot',
+                    width: 2
+                },
+                opacity: 0.5,
+                xaxis: 'sizes1',
+                yaxis: 'y2',
+                type: 'line'
+            });
+        });
 
         var layout = {
             title: 'Prediction precision and timings',
             legend: {
                 x: 0.0,
-                y: 1.6,
+                y: 1.8,
                 font: {
                     size: 10
                 }

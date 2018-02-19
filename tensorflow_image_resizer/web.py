@@ -272,7 +272,9 @@ def upload():
                         "filename": os.path.split(fullpath)[1],
                         "content_type": file.content_type,
                         "filesize": original_filesize,
-                        "derivatives": results
+                        "derivatives": results,
+                        "sizes": list(results.keys()),
+                        "server_names": list(servers.keys())
                     }
                 ]})
                 print('TF Processing Done')
