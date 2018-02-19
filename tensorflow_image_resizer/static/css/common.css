@@ -111,7 +111,8 @@ td, th {
 }
 
 .upload-button.done {
-    opacity: 0.5;
+    /*opacity: 0.5;*/
+    display: none;
 }
 
 .upload-button input {
@@ -128,6 +129,9 @@ td, th {
 }
 
 /* Progress Bar */
+.progress.done {
+    display: none;
+}
 .progress {
     height: 20px;
     margin-bottom: 20px;
@@ -239,4 +243,19 @@ span.filename {
     min-width: 400px;
     display: inline-block;
     height: 300px;
+}
+
+.maingraph {
+    width: 100%;
+    display: inline-block;
+    height: 300px;
+}
+
+#loader {
+    font-size: 4em;
+    color: rgba(50,100,200, 0.4);
+    padding: 20px;
+}
+.hidden {
+    display: none;
 }

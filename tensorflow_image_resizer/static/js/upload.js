@@ -2,7 +2,240 @@
 @author Ronan Delacroix
 */
 
-/*predict_data = {
+predict_data = {
+  "files": [
+    {
+      "filename": "daph.jpg",
+      "content_type": "image\/jpeg",
+      "filesize": 51353,
+      "derivatives": {
+        "Orig. 453x604": {
+          "filename": "daph.jpg",
+          "image_size": "453x604",
+          "resized": "Reference",
+          "average_duration": 0.86513543128967,
+          "filesize_percent": 100,
+          "average_precision": 100,
+          "format": "JPEG",
+          "predictions": {
+            "default": {
+              "precision": 100,
+              "predict_duration": 1.006906747818,
+              "results": {
+                "stole": 6.3457064628601,
+                "poncho": 6.1307721138,
+                "sarong": 4.7486276626587,
+                "feather boa, boa": 4.3989953994751,
+                "bib": 4.0259637832642
+              },
+              "total_duration": 1.006906747818
+            },
+            "gpu": {
+              "precision": 100,
+              "predict_duration": 0.72336411476135,
+              "results": {
+                "stole": 6.3457064628601,
+                "poncho": 6.1307721138,
+                "sarong": 4.7486276626587,
+                "feather boa, boa": 4.3989953994751,
+                "bib": 4.0259637832642
+              },
+              "total_duration": 0.72336411476135
+            }
+          },
+          "filesize": 51353,
+          "resize_duration": 0
+        },
+        "2048x2048": {
+          "filename": "daph.2048x2048.jpg",
+          "image_size": "453x604",
+          "resized": "2048x2048",
+          "average_duration": 0.84529209136963,
+          "filesize_percent": 87.689132085759,
+          "average_precision": 100,
+          "format": "JPEG",
+          "predictions": {
+            "default": {
+              "precision": 100,
+              "predict_duration": 0.85321688652039,
+              "results": {
+                "stole": 6.4791679382324,
+                "poncho": 5.746889591217,
+                "sarong": 4.8872017860413,
+                "feather boa, boa": 4.7093043327332,
+                "wig": 4.2504177093506
+              },
+              "total_duration": 0.87188076972961
+            },
+            "gpu": {
+              "precision": 100,
+              "predict_duration": 0.83736729621887,
+              "results": {
+                "stole": 6.4791679382324,
+                "poncho": 5.746889591217,
+                "sarong": 4.8872017860413,
+                "feather boa, boa": 4.7093043327332,
+                "wig": 4.2504177093506
+              },
+              "total_duration": 0.8560311794281
+            }
+          },
+          "filesize": 45031,
+          "resize_duration": 0.018663883209229
+        },
+        "1024x1024": {
+          "filename": "daph.1024x1024.jpg",
+          "image_size": "453x604",
+          "resized": "1024x1024",
+          "average_duration": 0.74363553524017,
+          "filesize_percent": 87.689132085759,
+          "average_precision": 100,
+          "format": "JPEG",
+          "predictions": {
+            "default": {
+              "precision": 100,
+              "predict_duration": 0.76020073890686,
+              "results": {
+                "stole": 6.4791679382324,
+                "poncho": 5.746889591217,
+                "sarong": 4.8872017860413,
+                "feather boa, boa": 4.7093043327332,
+                "wig": 4.2504177093506
+              },
+              "total_duration": 0.77376317977905
+            },
+            "gpu": {
+              "precision": 100,
+              "predict_duration": 0.72707033157349,
+              "results": {
+                "stole": 6.4791679382324,
+                "poncho": 5.746889591217,
+                "sarong": 4.8872017860413,
+                "feather boa, boa": 4.7093043327332,
+                "wig": 4.2504177093506
+              },
+              "total_duration": 0.74063277244568
+            }
+          },
+          "filesize": 45031,
+          "resize_duration": 0.013562440872192
+        },
+        "512x512": {
+          "filename": "daph.512x512.jpg",
+          "image_size": "384x512",
+          "resized": "512x512",
+          "average_duration": 0.81032705307007,
+          "filesize_percent": 56.649076003349,
+          "average_precision": 100,
+          "format": "JPEG",
+          "predictions": {
+            "default": {
+              "precision": 100,
+              "predict_duration": 0.81122994422913,
+              "results": {
+                "stole": 6.1926455497742,
+                "poncho": 6.0581345558167,
+                "sarong": 5.7648749351501,
+                "pajama, pyjama, pj's, jammies": 4.7426805496216,
+                "feather boa, boa": 4.2532725334167
+              },
+              "total_duration": 0.84041714668274
+            },
+            "gpu": {
+              "precision": 100,
+              "predict_duration": 0.80942416191101,
+              "results": {
+                "stole": 6.1926455497742,
+                "poncho": 6.0581345558167,
+                "sarong": 5.7648749351501,
+                "pajama, pyjama, pj's, jammies": 4.7426805496216,
+                "feather boa, boa": 4.2532725334167
+              },
+              "total_duration": 0.83861136436462
+            }
+          },
+          "filesize": 29091,
+          "resize_duration": 0.029187202453613
+        },
+        "256x256": {
+          "filename": "daph.256x256.jpg",
+          "image_size": "192x256",
+          "resized": "256x256",
+          "average_duration": 0.8101099729538,
+          "filesize_percent": 19.340642221487,
+          "average_precision": 100,
+          "format": "JPEG",
+          "predictions": {
+            "default": {
+              "precision": 100,
+              "predict_duration": 0.82589173316956,
+              "results": {
+                "poncho": 5.0755324363708,
+                "sarong": 4.9999623298645,
+                "stole": 3.9344449043274,
+                "feather boa, boa": 3.853298664093,
+                "kimono": 3.8276813030243
+              },
+              "total_duration": 0.83770680427551
+            },
+            "gpu": {
+              "precision": 100,
+              "predict_duration": 0.79432821273804,
+              "results": {
+                "poncho": 5.0755324363708,
+                "sarong": 4.9999623298645,
+                "stole": 3.9344449043274,
+                "feather boa, boa": 3.853298664093,
+                "kimono": 3.8276813030243
+              },
+              "total_duration": 0.80614328384399
+            }
+          },
+          "filesize": 9932,
+          "resize_duration": 0.011815071105957
+        },
+        "128x128": {
+          "filename": "daph.128x128.jpg",
+          "image_size": "96x128",
+          "resized": "128x128",
+          "average_duration": 0.75039565563202,
+          "filesize_percent": 6.9538293770568,
+          "average_precision": 100,
+          "format": "JPEG",
+          "predictions": {
+            "default": {
+              "precision": 100,
+              "predict_duration": 0.75632882118225,
+              "results": {
+                "overskirt": 5.0148344039917,
+                "chain mail, ring mail, mail, chain armor, chain armour, ring armor, ring armour": 4.7831993103027,
+                "Windsor tie": 4.5297050476074,
+                "neck brace": 4.1424269676208,
+                "maraca": 3.9481637477875
+              },
+              "total_duration": 0.76471924781799
+            },
+            "gpu": {
+              "precision": 100,
+              "predict_duration": 0.74446249008179,
+              "results": {
+                "overskirt": 5.0148344039917,
+                "chain mail, ring mail, mail, chain armor, chain armour, ring armor, ring armour": 4.7831993103027,
+                "Windsor tie": 4.5297050476074,
+                "neck brace": 4.1424269676208,
+                "maraca": 3.9481637477875
+              },
+              "total_duration": 0.75285291671753
+            }
+          },
+          "filesize": 3571,
+          "resize_duration": 0.0083904266357422
+        }
+      }
+    }
+  ]
+};
+/*{
     "filesize": 470478,
     "processing_times": {
         "predict": 4.486125946044922,
@@ -540,24 +773,15 @@ $(function () {
         interpolate: /\[\[(.+?)\]\]/g
     };
 
-    function graph_predictions(element_id, type, stats, ref_data) {
+    function graph_predictions(element_id, file_data) {
 
-        var keys = _.keys(stats);
-        var values = _.values(stats);
-
-        var avg_accuracy = [];
-        _.each(values, function (stat) {
-            var stat2 = _.compact(stat);
-            var sum = _.reduce(stat2, function(a, b){ return a + b; }, 0);
-            if (sum==0) { return 0; }
-            avg_accuracy.push(sum / _.size(stat2));
-        });
-
-        keys.splice(0, 0, 'Ref ('+ ref_data +')');
-        avg_accuracy.splice(0, 0, 100.0);
+        var image_list = file_data.derivatives;
+        var values = _.values(image_list);
+        var keys = _.keys(image_list);
+        var average_precisions = _.pluck(values, 'average_precision');
 
         var trace1 = {
-            x: avg_accuracy,
+            x: average_precisions,
             y: keys,
             name: 'Prediction accuracy',
             orientation: 'h',
@@ -575,18 +799,22 @@ $(function () {
             barmode: 'stack',
             yaxis: {
                 autorange: 'reversed',
-                showticklabels: true
+                showticklabels: true,
+            },
+            xaxis: {
+                hoverformat: '.2f',
+                ticksuffix: '%'
             },
             annotations: []
         };
 
-        for ( var i = 0 ; i < avg_accuracy.length ; i++ ) {
+        for ( var i = 0 ; i < average_precisions.length ; i++ ) {
             var result = {
                 xref: 'x1',
                 yref: 'y1',
-                x: avg_accuracy[i]+5,
+                x: average_precisions[i]+5,
                 y: keys[i],
-                text: avg_accuracy[i].toFixed(1) + '%',
+                text: average_precisions[i].toFixed(1) + '%',
                 font: {
                     family: 'Arial',
                     size: 12,
@@ -601,18 +829,13 @@ $(function () {
         Plotly.newPlot(element_id, data, layout);
     }
 
-    function graph_average_timing(element_id, type, stats, ref_data, ref_processing_times) {
+    function graph_average_timing(element_id, file_data) {
 
-        var keys = _.keys(stats);
-        var values = _.values(stats);
-        var predict_timings = _.pluck(values, 'predict');
-        var resize_timings = _.pluck(values, 'resize');
-        var total_timings = _.pluck(values, 'total');
-
-        keys.splice(0, 0, 'Ref ('+ ref_data +')');
-        predict_timings.splice(0, 0, ref_processing_times.predict);
-        resize_timings.splice(0, 0, ref_processing_times.resize);
-        total_timings.splice(0, 0, ref_processing_times.total);
+        var image_list = file_data.derivatives;
+        var values = _.values(image_list);
+        var keys = _.keys(image_list);
+        var predict_timings = _.pluck(values, 'average_duration');
+        var resize_timings = _.pluck(values, 'resize_duration');
 
         var trace1 = {
             x: predict_timings,
@@ -641,9 +864,15 @@ $(function () {
         var data = [trace1, trace2];
 
         var layout = {
-            title: 'Prediction and Resizing Timings by '+type,
+            title: 'Prediction and Resizing Duration by size',
             barmode: 'stack',
-            yaxis: {autorange: 'reversed'},
+            yaxis: {
+                autorange: 'reversed',
+            },
+            xaxis: {
+                hoverformat: '.2f',
+                ticksuffix: ' sec'
+            },
             legend: {
                 x: 0.309,
                 y: -0.52,
@@ -653,7 +882,7 @@ $(function () {
             },
             annotations: []
         };
-
+/*
         for ( var i = 0 ; i < total_timings.length ; i++ ) {
             var result = {
                 xref: 'x1',
@@ -670,12 +899,108 @@ $(function () {
             };
 
           layout.annotations.push(result);
-        }
+        }*/
 
         Plotly.newPlot(element_id, data, layout);
     }
 
+    function graph_total(element_id, file_data) {
+        var image_list = file_data.derivatives;
+        var values = _.values(image_list);
+        var keys = _.keys(image_list);
+        var precisions = _.pluck(values, 'average_precision');
+        var timings = _.pluck(values, 'average_duration');
+        var filesizes = _.pluck(values, 'filesize_percent');
 
+
+        var trace1 = {
+            x: keys,
+            y: precisions,
+            name: 'Prediction precision',
+            marker: {
+                color: 'rgba(55,128,191,0.6)',
+                width: 12
+            },
+            line: {
+                dash: 'solid',
+                width: 4
+            },
+            xaxis: 'y1',
+            yaxis: 'precision1',
+            type: 'line'
+        };
+
+        var trace2 = {
+            x: keys,
+            y: timings,
+            name: 'Prediction duration',
+            /*type: 'bar',*/
+            marker: {
+                color: 'rgba(255,153,51,0.6)',
+                width: 12
+            },
+            line: {
+                dash: 'solid',
+                width: 4
+            },
+            xaxis: 'sizes1',
+            yaxis: 'y2',
+            type: 'line'
+        };
+
+        var trace3 = {
+            x: keys,
+            y: filesizes,
+            name: 'File size',
+            marker: {
+                color: 'rgba(105,153,71,0.6)',
+                width: 2,
+            },
+            line: {
+                dash: 'dot',
+                width: 1
+            },
+            xaxis: 'sizes1',
+            yaxis: 'y1',
+            type: 'line'
+        };
+
+        var data = [trace1, trace2, trace3];
+
+        var layout = {
+            title: 'Prediction precision and timings',
+            legend: {
+                x: 0.0,
+                y: 1.6,
+                font: {
+                    size: 10
+                }
+            },
+            yaxis1: {
+                title: 'Result precision (%) / File size (%)',
+                titlefont: {color: 'rgba(55,128,191,0.6)'},
+                tickfont: {color: 'rgba(55,128,191,0.6)'},
+                hoverformat: '.1r',
+                ticksuffix: '%',
+                range: [0.0, 140.0]
+            },
+            yaxis2: {
+                title: 'Predict duration (s)',
+                titlefont: {color: 'rgba(255,153,51,0.6)'},
+                tickfont: {color: 'rgba(255,153,51,0.6)'},
+                overlaying: 'y',
+                side: 'right',
+                hoverformat: '.2f',
+                ticksuffix: ' sec'
+            }
+        };
+
+        Plotly.newPlot(element_id, data, layout);
+    }
+
+    //graph_total('graph0', predict_data.files[0]);
+    //graph_average_timing('graph1', predict_data.files[0]);
+    //graph_predictions('graph2', predict_data.files[0]);
 
     function getReadableFileSizeString(fileSizeInBytes) {
         var i = -1;
@@ -694,33 +1019,15 @@ $(function () {
         $.each(files, function (index, file) {
 
 
-            graph_average_timing(
-                'graph1', 'size',
-                file.statistics.average_timing_by_size,
-                file.image_size,
-                file.processing_times
-            );
-            graph_predictions(
-                'graph2', 'size',
-                file.statistics.predictions_by_size,
-                file.image_size
-            );
-            graph_average_timing(
-                'graph3', 'format',
-                file.statistics.average_timing_by_format,
-                file.format,
-                file.processing_times
-            );
-            graph_predictions(
-                'graph4', 'format',
-                file.statistics.predictions_by_format,
-                file.format
-            );
+            graph_total('graph0', file);
+            graph_average_timing('graph1', file);
+            graph_predictions('graph2', file);
+
 
             var file_tmpl = _.template($("#file_template").html());
             var resized_file_tmpl = _.template($("#resized_file_template").html());
 
-            file.filesize = getReadableFileSizeString(file.filesize);
+            /*file.filesize = getReadableFileSizeString(file.filesize);
             var derivatives_html = $('<div/>');
             _.each(file.derivatives, function(resized_file) {
                 resized_file.original_timing = file.processing_times.total;
@@ -732,7 +1039,7 @@ $(function () {
             });
             file.processed_derivatives = derivatives_html.html();
             var processed_html = file_tmpl(file);
-            $("#results").append(processed_html);
+            $("#results").append(processed_html);*/
         });
     }
 
@@ -770,16 +1077,17 @@ $(function () {
         previewMaxHeight: 100,
         previewCrop: true
     }).on('fileuploadadd', function (e, data) {
+        //$('#progress').addClass('done');
         $("#image-upload > span.upload-button").addClass('done');
         data.context = $('<div/>').appendTo('#files');
         $.each(data.files, function (index, file) {
             var node = $('<p/>')
                     .append($('<span/>').text(file.name));
-            if (!index) {
+            /*if (!index) {
                 node
                     .append('<br>')
                     .append(uploadButton.clone(true).data(data));
-            }
+            }*/
             node.appendTo(data.context);
         });
     }).on('fileuploadprocessalways', function (e, data) {
@@ -802,12 +1110,17 @@ $(function () {
                 .prop('disabled', !!data.files.error);
         }
     }).on('fileuploadprogressall', function (e, data) {
+        $('#loader').removeClass('hidden');
+        $('#progress').removeClass('done');
         var progress = parseInt(data.loaded / data.total * 100, 10);
         $('#progress .progress-bar').css(
             'width',
             progress + '%'
         );
     }).on('fileuploaddone', function (e, data) {
+        $('#loader').addClass('hidden');
+        $('#output').removeClass('hidden');
+        $('#progress').addClass('done');
         $('#results').html('<pre>'+JSON.stringify(data.result, null, '    ')+'</pre>');
 
         process_result(data.result.files);

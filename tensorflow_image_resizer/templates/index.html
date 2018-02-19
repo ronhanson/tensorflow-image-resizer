@@ -80,23 +80,25 @@
                 </span>
 
                 <!-- The global progress bar -->
-                <div id="progress" class="progress">
+                <div id="progress" class="progress done">
                     <div class="progress-bar progress-bar-success"></div>
                 </div>
-                <!-- The container for the uploaded files -->
-                <div id="files" class="files">
+                <div id="loader" class="hidden">
+                    <i class="fa fa-spinner fa-spin"></i>
                 </div>
-                <!-- The container for graphs -->
-                <div id="graphs" class="graphs">
-                    <div id="graph1" class="graph"></div>
-                    <div id="graph2" class="graph"></div>
-                    <div id="graph3" class="graph"></div>
-                    <div id="graph4" class="graph"></div>
+                <div id="output" class="hidden">
+                    <!-- The container for the uploaded files -->
+                    <div id="files" class="files"></div>
+                    <!-- The container for graphs -->
+                    <div id="graphs" class="graphs">
+                        <div id="graph0" class="maingraph"></div>
+                        <div id="graph1" class="graph"></div>
+                        <div id="graph2" class="graph"></div>
+                    </div>
+                    <!-- The container for the processing results -->
+                    <div id="results" class="results"></div>
                 </div>
-                <!-- The container for the processing results -->
-                <div id="results" class="results">
 
-                </div>
             </div>
         </div>
     </div>
