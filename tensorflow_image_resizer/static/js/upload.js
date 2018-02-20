@@ -166,7 +166,7 @@ $(function () {
         var trace3 = {
             x: keys,
             y: filesizes,
-            name: 'File size',
+            name: 'Bandwidth / Filesize',
             marker: {
                 width: 2,
             },
@@ -196,7 +196,7 @@ $(function () {
                 "orientation": "h"
             },
             yaxis1: {
-                title: 'Result precision (%) / File size (%)',
+                title: 'Result precision (%) / Bandwidth (%)',
                 titlefont: {color: 'rgb(212,42,47)'},
                 tickfont: {color: 'rgb(212,42,47)'},
                 hoverformat: '.1f',
@@ -261,7 +261,7 @@ $(function () {
 
 
         var layout = {
-            title: 'Precision and timings related to filesize',
+            title: 'Precision and timings related to Bandwidth',
             margin: {
                 l: 80,
                 r: 80,
@@ -277,7 +277,7 @@ $(function () {
 
             },
             xaxis1: {
-                title: 'File size (Byte)'
+                title: 'Bandwidth (Byte)'
             },
             yaxis1: {
                 title: 'Result precision (%)',
