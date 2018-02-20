@@ -22,8 +22,7 @@ services:
     ports:
       - "5051:5051"
     environment:
-      - TF_SERVER_NAME=tf-serving-image-server
-      - TF_SERVER_PORT=9000
+      - TF_SERVERS="My CPU Server:tf-serving-image-server:9000"
     depends_on:
       - tf-serving-image-server
 
