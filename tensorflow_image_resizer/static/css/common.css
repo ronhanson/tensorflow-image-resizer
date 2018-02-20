@@ -13,7 +13,7 @@ body {
 }
 
 #header {
-    padding: 20px 40px;
+    padding: 10px 40px;
     font-weight: lighter;
     font-size: 1.5em;
     background: rgb(255,255,255);
@@ -47,12 +47,12 @@ body {
     font-size: 0.5em;
     font-weight: bold;
     right: 20px;
-    top: 50px;
+    top: 30px;
 
 }
 
 #container {
-    padding: 100px 30px 10px 30px;
+    padding: 65px 20px 10px 20px;
 }
 
 label {
@@ -242,13 +242,13 @@ span.filename {
     width: 48%;
     min-width: 400px;
     display: inline-block;
-    height: 300px;
+    height: 350px;
 }
 
 .maingraph {
-    width: 100%;
+    width: 96%;
     display: inline-block;
-    height: 300px;
+    height: 450px;
 }
 
 #loader {

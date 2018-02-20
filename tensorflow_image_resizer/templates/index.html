@@ -10,62 +10,17 @@
     <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.iframe-transport.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload-process.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload-validate.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload-image.min.js"></script>
-        <script src="/static/js/lib/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.iframe-transport.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload-process.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload-validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/js/jquery.fileupload-image.min.js"></script>
+    <script src="/static/js/lib/plotly-latest.min.js"></script>
 
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/css/jquery.fileupload.min.css" rel="stylesheet" type="text/css" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.20.0/css/jquery.fileupload.min.css" rel="stylesheet" type="text/css" media="all">
 
 {% endblock %}
 {% block body %}
-<script id="file_template" type="text/x-handlebars-template">
-    <div id="file_[[filename]]" class="file">
-        <span class="filename">Original file : [[ filename ]]</span>
-        <span class="filesize">File Size : [[ filesize ]]</span>
-        <span class="image_size">Image Size : [[ image_size[0] ]]x[[ image_size[1] ]]</span>
-        <span class="format">Image Format : [[ format ]]</span>
-        <div class="processing_time">
-            <label>Processing times :</label>
-            <div>
-                <div class="bar">
-                    <div class="total" style="width:100%">
-                        <div class="part resize" style="width:10%">[[ processing_times.resize.toFixed(1) ]]s</div>
-                        <div class="part predict" style="width:90%">[[ processing_times.predict.toFixed(1) ]]s</div>
-                    </div>
-                </div>
-                <label>[[ processing_times.total.toFixed(1) ]]s</label>
-            </div>
-        </div>
-        <div class="derivatives">
-            <label>Resized versions</label>
-            [[ processed_derivatives ]]
-        </div>
-    </div>
-</script>
-
-<script id="resized_file_template" type="text/x-handlebars-template">
-            <div class="derivative">
-                <span class="filename">Original file : [[ filename ]]</span>
-                <span class="filesize">File Size : [[ filesize ]]</span>
-                <span class="image_size">Image Size : [[ image_size[0] ]]x[[ image_size[1] ]]</span>
-                <span class="format">Image Format : [[ format ]]</span>
-                <div class="processing_time">
-                    <label>Processing times :</label>
-                    <div>
-                        <div class="bar">
-                            <div class="total" style="width:[[ processing_times.total_percent ]]%">
-                                <div class="part resize" style="width:[[ processing_times.resize_percent ]]%"></div>
-                                <div class="part predict" style="width:[[ processing_times.predict_percent ]]%">&nbsp;&nbsp;[[ processing_times.predict_percent.toFixed(1) ]]%</div>
-                            </div>
-                        </div>
-                        <label>[[ processing_times.total.toFixed(1) ]]s</label>
-                    </div>
-                </div>
-            </div>
-</script>
 
 <div id="container">
     <div id="upload">
@@ -94,6 +49,8 @@
                         <div id="graph0" class="maingraph"></div>
                         <div id="graph1" class="graph"></div>
                         <div id="graph2" class="graph"></div>
+                        <div id="graph3" class="graph"></div>
+                        <div id="graph4" class="graph"></div>
                     </div>
                     <!-- The container for the processing results -->
                     <div id="results" class="results"></div>
