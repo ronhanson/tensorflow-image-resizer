@@ -20,7 +20,7 @@ body {
     box-shadow: rgba(100,100,100, 0.4) 0px 5px 15px 0px, rgba(0,0,0, 0.3) 0px 2px 4px 0px;
     border-bottom: 15px solid rgb(114,150,187);
     position: fixed;
-    z-index: 2;
+    z-index: 1010;
     width: 100%;
     box-sizing: border-box;
     line-height: 40px;
@@ -245,7 +245,7 @@ span.filename {
     height: 350px;
 }
 
-.maingraph {
+.graph.main {
     width: 96%;
     display: inline-block;
     height: 450px;
@@ -256,6 +256,22 @@ span.filename {
     color: rgba(50,100,200, 0.4);
     padding: 20px;
 }
+
+#reset {
+    display: block;
+    position: absolute;
+    top: 50px;
+    right: 30px;
+    font-size: 2em;
+    color: darkgrey;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#reset:hover {
+    color: darkred;
+}
+
 .hidden {
     display: none;
 }

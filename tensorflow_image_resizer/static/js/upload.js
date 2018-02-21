@@ -355,15 +355,14 @@ $(function () {
     function process_result(files) {
         $("#results").html('');
 
-        $.each(files, function (index, file) {
+        var file = files[0]
 
-            graph_total('graph0', file);
-            graph_average_timing('graph1', file);
-            graph_predictions('graph2', file);
-            graph_filesize('graph3', file);
-            graph_servers('graph4', file);
+        graph_total('graph0', file);
+        graph_average_timing('graph1', file);
+        graph_predictions('graph2', file);
+        graph_filesize('graph3', file);
+        graph_servers('graph4', file);
 
-        });
     }
 
     /*
@@ -382,9 +381,10 @@ $(function () {
         $("#image-upload > span.upload-button").addClass('done');
         data.context = $('<div/>').appendTo('#files');
         $.each(data.files, function (index, file) {
-            var node = $('<div/>')
-                    .append($('<span/>').text(file.name));
+            var node = $('<div/>').append($('<span/>').text(file.name));
+            var retry = $('<div id="reset"/>').append($('<i class="fa fa-close"/>'));
             node.appendTo(data.context);
+            retry.appendTo(data.context);
         });
     }).on('fileuploadprocessalways', function (e, data) {
         var index = data.index,
@@ -425,6 +425,22 @@ $(function () {
         });
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+
+    /*
+        Reset page
+     */
+
+    $('#files').on('click', '#reset', function() {
+        $('.graph').html('');
+        $('#files').html('');
+        $('#results').html('');
+        $('#loader').addClass('hidden');
+        $('#output').addClass('hidden');
+        $('#progress').addClass('done');
+        $("#image-upload > span.upload-button").removeClass('done');
+        $("input#fileupload").val(null);
+    });
 
     /*
         Test/Dev functions
