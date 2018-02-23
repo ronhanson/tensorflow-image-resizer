@@ -3,7 +3,7 @@ Tensorflow Image Resizer
 
 ***Project sponsored by [Kontron](https://www.kontron.com)***
 
-***Project Lead and [related articles](https://medium.com/@samnco) by [Samuel Cozannet](https://www.linkedin.com/in/scozannet/)***
+***Project Lead and [related articles](https://medium.com/@samnco/fun-with-kubernetes-tensorflow-serving-4fef8d7502b9) by [Samuel Cozannet](https://www.linkedin.com/in/scozannet/)***
 
 ***Code and programming by [Ronan Delacroix](https://www.linkedin.com/in/ronan-delacroix/)***
 
