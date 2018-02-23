@@ -23,7 +23,7 @@ The aim is to compare Tensorflow results and processing times when varying image
 
 *This small project is not production grade and is made for Mobile World Congress as a demo.*
 
-Read [https://medium.com/@samnco](https://medium.com/@samnco) to know more.
+Read [https://medium.com/@samnco/fun-with-kubernetes-tensorflow-serving-4fef8d7502b9](https://medium.com/@samnco/fun-with-kubernetes-tensorflow-serving-4fef8d7502b9) to know more.
 
 Run
 ---
