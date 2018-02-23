@@ -26,6 +26,7 @@ app = Flask('tensorflow-image-resizer',
             root_path=os.path.split(os.path.realpath(__file__))[0],
             template_folder='templates')
 app.wsgi_app = WhiteNoise(app.wsgi_app, root='static/')
+app.secret_key = 'to4oetjz0Vo0ouSn0'
 app_name = "Tensor Flow Image Resizer"
 
 
