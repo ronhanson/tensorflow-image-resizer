@@ -4,7 +4,7 @@ gunicorn
 kubernetes
 werkzeug
 Pillow
-tensorflow<=1.5.0
+tensorflow>=2.15
 grpcio<=1.8.0
 dpath
 numpy
